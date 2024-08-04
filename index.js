@@ -31,6 +31,10 @@ app.get("/farms", async (req, res) => {
   const farms = await Farm.find({});
   res.render("farms/index", { farms });
 });
+app.delete("farms/:id", async (req, res) => {
+  const farm = await Farm.findByIdAndDelete(req.params.id);
+  res.redirect("/farms");
+});
 
 app.get("/farms/new", (req, res) => {
   res.render("farms/new");
